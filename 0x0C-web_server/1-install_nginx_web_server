@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Configures a new ubuntu machine by installing
+# Nginx where it should be listening on port 80
+# Serve a page that would return a Hello World string
+#
+#!/bin/bash
+
+# Install nginx with the -y flag to avoid user prompts
+apt-get update
+apt-get install -y nginx
+
+# Modify the default Nginx configuration to listen on port 80
+sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+service nginx restart
+
+# Create a temporary HTML file containing "Hello World!"
+echo "<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+    <h1>Hello World!</h1>
+</body>
+</html>" > /var/www/html/index.html
+
+# Check if Nginx returns "Hello World!" when queried at the root
+response=$(curl -s http://localhost)
+if [[ $response == *"Hello World!"* ]]; then
+    echo "Nginx successfully installed and configured!"
+else
+    echo "Error: Nginx installation or configuration failed."
+fi
