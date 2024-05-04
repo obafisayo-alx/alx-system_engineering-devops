@@ -45,8 +45,8 @@ frontend http_front
 
 backend http_back
     balance roundrobin
-    server 469087-web-01 34.232.70.111:80 check
-    server 469087-web-02 54.209.252.118:80 check
+    server 469087-web-01 35.153.98.10:80 check
+    server 469087-web-02 35.153.79.136:80 check
     http-request set-header X-Served-By %[src]
 EOF
 
