@@ -4,7 +4,12 @@
 
 # Check if the password argument is provided
 if [ -z "$1" ]; then
-  echo "Usage: $0 <mysql_root_password>"
+  echo "Usage: $0 <mysql_root_password> <backup_file_name>"
+  exit 1
+fi
+
+if [ -z "$2" ]; then
+  echo "Usage: $0 <mysql_root_password> <backup_file_name>"
   exit 1
 fi
 
@@ -12,12 +17,12 @@ fi
 MYSQL_ROOT_PASSWORD=$1
 
 # File and date format
-DUMP_FILE="backup.sql"
+DUMP_FILE=$2
 DATE_FORMAT=$(date +'%d-%m-%Y')
 ARCHIVE_FILE="${DATE_FORMAT}.tar.gz"
 
 # Create MySQL dump
-mysqldump -u root -p"${MYSQL_ROOT_PASSWORD}" --all-databases > "${DUMP_FILE}"
+sudo mysqldump -u root -p"${MYSQL_ROOT_PASSWORD}" --all-databases | sudo tee "${DUMP_FILE}"
 
 # Check if the dump was successful
 if [ $? -ne 0 ]; then
