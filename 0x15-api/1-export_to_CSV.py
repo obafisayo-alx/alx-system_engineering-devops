@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+"""exports a csv file with inputs gotten from an api"""
 import csv
 import requests
 import sys
