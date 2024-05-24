@@ -29,7 +29,6 @@ if __name__ == "__main__":
     # Write todos to the CSV file
     with open(filename, mode='w', newline='') as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-        # writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         for todo in todos:
             writer.writerow(
                 [
@@ -39,5 +38,3 @@ if __name__ == "__main__":
                     todo['title']
                 ]
             )
-
-    # print(f"Data exported to {filename}")
