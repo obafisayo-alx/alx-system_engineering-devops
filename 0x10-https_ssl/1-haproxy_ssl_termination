@@ -49,5 +49,5 @@ frontend obafisayolibrary_front-https
 
 backend obafisayolibrary_back
     balance roundrobin
-    server 469087-web-01 35.153.98.10:80 check
+    server 469087-web-01 52.73.23.99:80 check
     server 469087-web-02 35.153.79.136:80 check
